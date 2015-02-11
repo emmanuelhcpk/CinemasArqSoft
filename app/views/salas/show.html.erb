@@ -1,0 +1,82 @@
+<%=@sala.nro_sala%>
+<%=@sala.sede.nombre%>
+
+<%@peliculas.each do|a|%>
+<%= a.id%>
+<%end%>
+ <%if socio_signed_in?%>
+
+ 
+    <%if es_admin?%>
+    
+    
+    
+    <h1>Agregar una pelicula ala Cartelera</h1>
+
+
+
+<%= form_for(@funcion) do |aux| %>
+
+  <%= aux.hidden_field :sala_id ,:value => @sala.id %>
+  <div class="field">
+  <%= aux.label :fecha_y_hora %>
+
+  <%= aux.datetime_select :fecha, :ampm => true, :minute_step => 15 %>
+    </div>
+     <div class="field">
+   
+      <%= aux.select(:cartelera_id) do %>
+
+            <%@peliculas.each do|a|%>
+
+            <%= content_tag(:option, a.pelicula.nombre, value: a.id) %>
+
+            <% end %>
+   <% end %>
+</div>
+      
+      <div class="field">
+      
+
+      <%= aux.submit "Crear funcion", class: "btn btn-large btn-primary" %>
+      </div>
+      
+   <%end%>
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h1>Crear una silla</h1>
+            <%= form_for(@silla) do |aux| %>
+           
+        <%= aux.label :tipo_silla %>
+        <%= aux.select(:tipo_silla) do %>
+
+            
+
+            <%= content_tag(:option,'General') %>
+            <%= content_tag(:option,'Preferencial-VIP') %>
+            
+        <% end %>
+              
+              <%= aux.hidden_field :sala_id ,:value => @sala.id %>
+        
+              <%= aux.submit "Crear sala", class: "btn btn-large btn-primary" %>
+            <%end%>
+    <%end%>
+<%end%>

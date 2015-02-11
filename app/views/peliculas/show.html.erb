@@ -1,0 +1,7 @@
+<%if socio_signed_in?%>
+ <h1><%=@pelicula.nombre%></h1>
+ <img src="<%= @pelicula.poster.url%>" ></img>
+    <%if es_admin?%>
+        <%end%>
+<%end%>
+

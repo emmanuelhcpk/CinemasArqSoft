@@ -1,0 +1,61 @@
+
+<%=@sede.nombre%>
+<%=@cartelera.id%>
+<%@sede.carteleras.each do|a|%>
+<%if a.pelicula_id!=nil%>
+<h4><%=a.pelicula.nombre%></h4>
+ <img src="<%=a.pelicula.poster.url%>"></img>
+  <% end %>
+ <% end %>
+
+
+<%if socio_signed_in?%>
+<%if es_admin?%>
+
+<h1>Agregar una pelicula ala Cartelera</h1>
+<%= form_for(@cartelera) do |aux| %>
+
+     <div class="field">
+         
+      <%= aux.select(:pelicula_id) do %>
+
+            <%@peliculas.each do|a|%>
+
+            <%= content_tag(:option, a.nombre, value: a.id) %>
+
+            <% end %>
+   <% end %>
+</div>
+      
+      <div class="field">
+      <%= aux.hidden_field :sede_id ,:value => @sede.id %>
+
+      <%= aux.submit "Crear sala", class: "btn btn-large btn-primary" %>
+      </div>
+      
+   <%end%>
+   
+   <br>
+   
+<h1>Crear un sala</h1>
+<%= form_for(@sala) do |aux| %>
+
+   <div class="field">
+      <%= aux.label :nro_sala %>
+      <%= aux.text_field :nro_sala %>
+      </div>
+            
+      <div class="field">
+      <%= aux.label :capacidad %>
+      <%= aux.text_field :capacidad %>
+      </div>
+      
+      <div class="field">
+      <%= aux.hidden_field :sede_id ,:value => @sede.id %>
+
+      <%= aux.submit "Crear sala", class: "btn btn-large btn-primary" %>
+      </div>
+      
+   <%end%>
+<%end%>
+<%end%>

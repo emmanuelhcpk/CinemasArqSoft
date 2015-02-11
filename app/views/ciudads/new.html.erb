@@ -1,0 +1,9 @@
+ <%= form_for(@ciudad) do |aux| %>
+   
+      <%= aux.label :nombre %>
+      <%= aux.text_field :nombre %>
+
+
+
+      <%= aux.submit "Registrar ciudad", class: "btn btn-large btn-primary" %>
+<%end%>

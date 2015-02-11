@@ -1,0 +1,51 @@
+
+
+ <script type="text/javascript">
+ 
+    $(window).load(function(){
+        $('#myModal').modal('show');
+    });
+    
+</script>
+  
+</script>
+
+<div class="jumbotron" onload="cargar();">
+  <h1>Cinema</h1>
+        <%@ciudads.each do |cid|%>
+      
+      <li><%=link_to cid.nombre,cid%></li>
+      
+      <%end%>
+</div>
+
+<!-- Large modal -->
+
+<div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+<!-- Logica del el modal -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4  col-md-offset-4 ">
+      <ul>
+      <%@ciudads.each do |cid|%>
+      
+      <li><%=link_to cid.nombre,cid%></li>
+      
+      <%end%>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+

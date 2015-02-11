@@ -1,0 +1,21 @@
+<%= form_for(@funcion) do |aux| %>
+
+     <div class="field">
+         
+      <%= aux.select(:cartelera_id) do %>
+
+            <%@peliculas.each do|a|%>
+
+            <%= content_tag(:option, a.pelicula.nombre, value: a.id) %>
+
+            <% end %>
+   <% end %>
+</div>
+      
+      <div class="field">
+      <%= aux.hidden_field :sede_id ,:value => @sede.id %>
+
+      <%= aux.submit "Crear sala", class: "btn btn-large btn-primary" %>
+      </div>
+      
+   <%end%>
