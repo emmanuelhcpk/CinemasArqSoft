@@ -14,6 +14,16 @@ module ApplicationHelper
         
     end
     
+    def validar_pelicula
+        
+        if Pelicula.all==nil
+            redirect_to new_pelicula_path
+        else
+            return true
+        end
+        
+    end
+    
     #metodos para verificar admins 
     
  def permisos_administrador?

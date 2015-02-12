@@ -1,7 +1,11 @@
 class SalasController < ApplicationController
      before_action :permisos_administrador?, only: [:new, :create,:edit, :update, :destroy]
+     before_action :validar_pelicula, only: [:new, :show,:create,:edit, :update, :destroy]
     def show
         @sala = Sala.find(params[:id])
+        if @sala.sede.carteleras.empty?
+           redirect_to @sala.sede
+       end
         @silla= @sala.sillas.build
         @funcion = @sala.funcions.build
         sede = @sala.sede

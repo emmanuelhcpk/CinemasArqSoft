@@ -1,8 +1,11 @@
 class SedesController < ApplicationController
     
      before_action :permisos_administrador?, only: [:new,:create,:edit, :update, :destroy]
+      before_action :validar_pelicula, only: [:show,:create,:edit, :update, :destroy]
    def show
+       
        @sede = Sede.find(params[:id])
+       
        @sala = @sede.salas.build
        @peliculas= Pelicula.all
        @cartelera=@sede.carteleras.build
@@ -14,13 +17,18 @@ class SedesController < ApplicationController
         
     end
     
+    def index
+        @sede = Sede.all
+        @ciudades = Ciudad.all
+    end
+    
      def create
         @sede = Sede.new(sede_params)
         if @sede.valid?
             @sede.save
-            #redirect_to 
+            redirect_to @sede
         else
-           #redirect_to  
+           redirect_to  error_path
         end
     end 
     

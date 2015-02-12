@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :socios
   resources :reservas 
-  resources :peliculas, only: [:show,:create, :new,:destroy,:update,:edit]
+  resources :peliculas
   resources :ciudads
   resources :sedes
   resources :salas
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
    match '/home',  to: 'estaticas#home',         via: 'get'
    match '/mostrar',  to: 'peliculas#mostrar',         via: 'get'
   match '/error',  to: 'estaticas#error',         via: 'get'
+   match '/ver_reservas',  to: 'estaticas#ver_reservas',         via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

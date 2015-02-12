@@ -1,0 +1,17 @@
+  <h1>Crear una silla</h1>
+            <%= form_for(@silla) do |aux| %>
+           
+        <%= aux.label :tipo_silla %>
+        <%= aux.select(:tipo_silla) do %>
+
+            
+
+            <%= content_tag(:option,'General') %>
+            <%= content_tag(:option,'Preferencial-VIP') %>
+            
+        <% end %>
+              
+              <%= aux.hidden_field :sala_id ,:value => @sala.id %>
+        
+              <%= aux.submit "Añadir silla", class: "btn btn-large btn-primary" %>
+         <%end%>

@@ -1,0 +1,6 @@
+
+
+<%= form_for(current_socio.reservas.find_by(funcion_id: @funcion.id),
+             html: { method: :delete }) do |f| %>
+  <%= f.submit "Cancelar Reserva", class: "btn btn-large" %>
+<% end %>

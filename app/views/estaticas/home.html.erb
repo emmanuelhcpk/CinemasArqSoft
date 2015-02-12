@@ -11,32 +11,43 @@
 </script>
 
 <div class="jumbotron" onload="cargar();">
-  <h1>Cinema</h1>
+  <h1>Cinemas</h1>
+  <h3>Seleccione su ciudad:</h3>
         <%@ciudads.each do |cid|%>
       
       <li><%=link_to cid.nombre,cid%></li>
       
       <%end%>
+
 </div>
 
 <!-- Large modal -->
 
 <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-lg panel">
     <div class="modal-content">
 <!-- Logica del el modal -->
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-4  col-md-offset-4 ">
-      <ul>
-      <%@ciudads.each do |cid|%>
+    
+    <h1><b>Elija su ciudad</b></h1>
+    <br>
+    <br>
+    <p align = "center">
+    <ul>
+      <%@ciudads.each do |cid|%> 
       
-      <li><%=link_to cid.nombre,cid%></li>
-      
+      <li>
+      <%=link_to cid do %>
+       <i class="glyphicon glyphicon-globe"> </i><%=cid.nombre%>
+      </li>
+        <%end%>
+        
       <%end%>
-      </ul>
-    </div>
+     <br>
+     </p>
+</ul>
   </div>
 </div>
 

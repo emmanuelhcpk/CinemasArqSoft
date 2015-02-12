@@ -1,0 +1,22 @@
+<h1>Crear un sala</h1>
+
+<%= form_for(@sala) do |aux| %>
+
+   <div class="field">
+      <%= aux.label :nro_sala %>
+      <%= aux.text_field :nro_sala %>
+      </div>
+            
+      <div class="field">
+      <%= aux.label :capacidad %>
+      <%= aux.text_field :capacidad %>
+      </div>
+      
+      <div class="field">
+      <%= aux.hidden_field :sede_id ,:value => @sede.id %>
+
+      <%= aux.submit "Crear sala", class: "btn btn-large btn-primary" %>
+      </div>
+      
+   
+   <%end%>

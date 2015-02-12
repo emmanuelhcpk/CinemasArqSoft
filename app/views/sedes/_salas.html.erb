@@ -1,0 +1,4 @@
+<h1>Salas en la <%=@sede.nombre%> </h1>
+        <%@sede.salas.each do |sala|%>
+        <h2>Sala : <%=link_to sala.nro_sala,sala%> </h2>
+        <%end%>

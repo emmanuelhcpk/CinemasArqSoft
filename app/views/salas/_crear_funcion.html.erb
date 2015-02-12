@@ -1,0 +1,31 @@
+<h1>Agregar una funcion atu cartelera</h1>
+
+
+
+<%= form_for(@funcion) do |aux| %>
+
+  <%= aux.hidden_field :sala_id ,:value => @sala.id %>
+  <div class="field">
+  <%= aux.label :fecha_y_hora %>
+
+  <%= aux.datetime_select :fecha, :ampm => true, :minute_step => 15 %>
+    </div>
+     <div class="field">
+   
+      <%= aux.select(:cartelera_id) do %>
+
+            <%@peliculas.each do|a|%>
+
+            <%= content_tag(:option, a.pelicula.nombre, value: a.id) %>
+
+            <% end %>
+   <% end %>
+</div>
+      
+      <div class="field">
+      
+
+      <%= aux.submit "Crear funcion", class: "btn btn-large btn-primary" %>
+      </div>
+      
+   <%end%>

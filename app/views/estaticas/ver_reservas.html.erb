@@ -1,0 +1,13 @@
+<div class="container well">
+    
+<ul>
+<% current_socio.reservas.each do |reserv|%>
+
+<h3>ID Reserva: <%=reserv.id%></h3>
+<h2><%=reserv.funcion.cartelera.pelicula.nombre%></h2>
+<h4><%=reserv.fecha_hora%></h4>
+<%=link_to 'Cancelar',reserv.funcion, class: 'btn btn-default'%>
+
+<%end%>
+</ul>
+</div>

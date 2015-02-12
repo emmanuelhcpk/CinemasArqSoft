@@ -1,61 +1,77 @@
 
-<%=@sede.nombre%>
-<%=@cartelera.id%>
-<%@sede.carteleras.each do|a|%>
-<%if a.pelicula_id!=nil%>
-<h4><%=a.pelicula.nombre%></h4>
- <img src="<%=a.pelicula.poster.url%>"></img>
-  <% end %>
- <% end %>
+
+
+
 
 
 <%if socio_signed_in?%>
-<%if es_admin?%>
+    <%if es_admin?%>
 
-<h1>Agregar una pelicula ala Cartelera</h1>
-<%= form_for(@cartelera) do |aux| %>
 
-     <div class="field">
-         
-      <%= aux.select(:pelicula_id) do %>
+<div class="container well">
+<div role="tabpanel">
 
-            <%@peliculas.each do|a|%>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">General</a></li>
+    <li role="presentation"><a href="#cartelera" aria-controls="cartelera" role="tab" data-toggle="tab">Agregar una Pelicula a la cartelera:</a></li>
+    <li role="presentation"><a href="#sala" aria-controls="sala" role="tab" data-toggle="tab">Crear Sala</a></li>
 
-            <%= content_tag(:option, a.nombre, value: a.id) %>
+  </ul>
 
-            <% end %>
-   <% end %>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane" id="cartelera">
+        <%if @peliculas.all!=nil%>
+        <%=render 'sedes/crear_cartelera'%>
+        <%else%>
+        <h1>Ingrese peliculas para crear su cartelera</h1>
+        <%end%>
+        </div>
+   
+    <div role="tabpanel" class="tab-pane" id="sala">
+        <%=render 'sedes/crear_sala'%>
+    </div>
+   
+    <div role="tabpanel" class="tab-pane active" id="general">
+        <%=render 'sedes/informacion'%>
+        </div>
+  
+  </div>
+
 </div>
-      
-      <div class="field">
-      <%= aux.hidden_field :sede_id ,:value => @sede.id %>
+</div>
 
-      <%= aux.submit "Crear sala", class: "btn btn-large btn-primary" %>
-      </div>
-      
-   <%end%>
-   
-   <br>
-   
-<h1>Crear un sala</h1>
-<%= form_for(@sala) do |aux| %>
+<div class="container well">
+    <div class="col-xs-12">
+    
+     <%=render 'sedes/salas'%>
+    
+    </div>    
+</div> 
 
-   <div class="field">
-      <%= aux.label :nro_sala %>
-      <%= aux.text_field :nro_sala %>
-      </div>
+
+
+  
+
+
+  <% end %>
+ <% end %>
             
-      <div class="field">
-      <%= aux.label :capacidad %>
-      <%= aux.text_field :capacidad %>
-      </div>
-      
-      <div class="field">
-      <%= aux.hidden_field :sede_id ,:value => @sede.id %>
+ 
+<div class="container well">
+    <h2>Cartelera Actual</h2>
+    <div class="row">
+<%@sede.carteleras.each do|a|%>
 
-      <%= aux.submit "Crear sala", class: "btn btn-large btn-primary" %>
-      </div>
-      
-   <%end%>
-<%end%>
-<%end%>
+            <%if a.pelicula_id!=nil%>
+
+                <div class="col-xs-2 col-md-2">
+                    <h4><%=link_to a.pelicula.nombre,a%> </h4>
+                    <img src="<%=a.pelicula.poster.url%>" >
+                </div>
+            
+            <% end %>
+ <% end %>
+  </div>
+</div>

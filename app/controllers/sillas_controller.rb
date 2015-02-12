@@ -16,7 +16,7 @@ class SillasController < ApplicationController
     
         if @silla.valid?
             @silla.save
-            #redirect_to 
+            redirect_to  @silla.sala
         else
            #redirect_to  
         end

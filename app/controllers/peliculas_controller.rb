@@ -15,21 +15,24 @@ class PeliculasController < ApplicationController
 
     end
     
+    def index
+        @peliculas = Pelicula.all
+    end
+    
     def create
         @pelicula = Pelicula.new(pelicula_params)
         if @pelicula.valid?
             @pelicula.save
-            redirect_to mostrar_path
+            redirect_to @pelicula
         else
-           redirect_to root_path 
+           #redirect_to root_path 
         end
     end 
     
     private
     
     def pelicula_params# permito cuales son los campos permitdos que me envian en un formulario
-      params.require(:pelicula).permit(:nombre, :nombre_director, :password,
-                                   :password_confirmation,:poster)
+      params.require(:pelicula).permit(:nombre, :nombre_director,:poster,:genero,:descripcion)
     end
     
 end

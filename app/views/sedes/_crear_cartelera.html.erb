@@ -1,0 +1,27 @@
+<h1>Agregar una pelicula a la Cartelera</h1>
+        <%= form_for(@cartelera) do |aux| %>
+
+     <div class="field">
+
+<%if @peliculas.all!= nil%>
+      <%= aux.select(:pelicula_id) do %>
+
+            <%@peliculas.each do|a|%>
+
+            <%= content_tag(:option, a.nombre, value: a.id) %>
+
+            <% end %>
+      <% end %>
+      
+<% end %>
+
+</div>
+      
+      <div class="field">
+      <%= aux.hidden_field :sede_id ,:value => @sede.id %>
+
+      <%= aux.submit "Crear cartelera", class: "btn btn-large btn-primary" %>
+      </div>
+      
+   <%end%>
+  

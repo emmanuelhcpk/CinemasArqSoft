@@ -1,1 +1,6 @@
-<%= @cartelera.id %>
+
+<div class="container well"><% @cartelera.funcions.each do |fun| %>
+        <div class="col-xs-2"><h3><%=link_to @cartelera.pelicula.nombre,fun%></h3>
+        <h3><%=fun.fecha%></h3>
+        </div>
+<%end%></div>

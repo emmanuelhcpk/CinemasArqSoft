@@ -1,5 +1,11 @@
 
-<%@ciudad.sedes.each do |sed| %>
-        <h3><%=link_to sed.nombre,sed%></h3>
 
+
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+    <%@ciudad.sedes.each do |sed| %>
+       
+    <div class="btn-group" role="group">
+              <h3><%=link_to sed.nombre,sed,class: 'btn btn-default'%></h3>
+    </div>
 <%end%>
+</div>

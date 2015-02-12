@@ -1,6 +1,7 @@
 class FuncionsController < ApplicationController
   before_action :set_funcion, only: [:show, :edit, :update, :destroy]
  before_action :permisos_administrador?, only: [:new, :create,:edit, :update, :destroy]
+  before_action :validar_pelicula, only: [:new, :show,:create,:edit, :update, :destroy]
  
   respond_to :html
 
@@ -10,8 +11,15 @@ class FuncionsController < ApplicationController
   end
 
   def show
-    respond_with(@funcion)
-    @reserva=current_socio.reservas.build()
+    
+    @funcion = Funcion.find(params[:id])
+    
+    if @funcion.sala.sillas.empty? == true
+      
+      redirect_to @funcion.sala
+    end
+    @reserva=@funcion.reservas.build
+    @sillas= @funcion.sala.sillas.all
   end
 
   def new
@@ -20,7 +28,9 @@ class FuncionsController < ApplicationController
   end
 
   def edit
+    
   end
+
 
   def create
     @funcion = Funcion.new(funcion_params)

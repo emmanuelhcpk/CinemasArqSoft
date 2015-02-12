@@ -1,82 +1,54 @@
-<%=@sala.nro_sala%>
-<%=@sala.sede.nombre%>
-
-<%@peliculas.each do|a|%>
-<%= a.id%>
-<%end%>
  <%if socio_signed_in?%>
-
- 
-    <%if es_admin?%>
+        <%if es_admin?%>
     
     
     
-    <h1>Agregar una pelicula ala Cartelera</h1>
+<div class="container well">
+    <div role="tabpanel">
 
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">General</a></li>
+    <li role="presentation"><a href="#funcion" aria-controls="funcion" role="tab" data-toggle="tab">Crear función</a></li>
+    <li role="presentation"><a href="#silla" aria-controls="silla" role="tab" data-toggle="tab">Agregar Sillas</a></li>
 
+  </ul>
 
-<%= form_for(@funcion) do |aux| %>
-
-  <%= aux.hidden_field :sala_id ,:value => @sala.id %>
-  <div class="field">
-  <%= aux.label :fecha_y_hora %>
-
-  <%= aux.datetime_select :fecha, :ampm => true, :minute_step => 15 %>
-    </div>
-     <div class="field">
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane" id="funcion">
+        <%=render 'salas/crear_funcion'%>
+        </div>
    
-      <%= aux.select(:cartelera_id) do %>
+    <div role="tabpanel" class="tab-pane" id="silla">
+        <%=render 'salas/agrega_silla'%>
+    </div>
+   
+    <div role="tabpanel" class="tab-pane active" id="general">
+        <%=render 'salas/informacion'%>
+        </div>
+  
+  </div>
 
-            <%@peliculas.each do|a|%>
-
-            <%= content_tag(:option, a.pelicula.nombre, value: a.id) %>
-
-            <% end %>
-   <% end %>
 </div>
+</div>
+
       
-      <div class="field">
-      
-
-      <%= aux.submit "Crear funcion", class: "btn btn-large btn-primary" %>
-      </div>
-      
-   <%end%>
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h1>Crear una silla</h1>
-            <%= form_for(@silla) do |aux| %>
-           
-        <%= aux.label :tipo_silla %>
-        <%= aux.select(:tipo_silla) do %>
-
-            
-
-            <%= content_tag(:option,'General') %>
-            <%= content_tag(:option,'Preferencial-VIP') %>
-            
-        <% end %>
-              
-              <%= aux.hidden_field :sala_id ,:value => @sala.id %>
-        
-              <%= aux.submit "Crear sala", class: "btn btn-large btn-primary" %>
-            <%end%>
     <%end%>
 <%end%>
+
+
+<div class="container well">
+
+    <%@peliculas.each do |a|%>
+    <div class="col-xs-2 pel"> 
+                    <h4><%=link_to a.pelicula.nombre,a%> </h4>
+                  
+                    <img src="<%=a.pelicula.poster.url%>" >
+                    
+                
+    </div>
+    <%end%>
+
+
+</div>

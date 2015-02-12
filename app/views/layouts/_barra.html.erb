@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -13,24 +13,49 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+
+
 <%if socio_signed_in? %>
 
 
 <%if es_admin? %>
-          
-          <li> <%=link_to "Crear Sede",'/sedes/new'%> </li>
-          <li> <%=link_to "Agregar Ciudad",'/ciudads/new'%> </li>
-          <li> <%=link_to "Crear Pelicula",'/peliculas/new'%> </li>
-           <li> <%=link_to "Crear Función", new_funcion_path%> </li>
+
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sedes <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li> <%=link_to "Crear Sede",'/sedes/new'%> </li>
+                  <li> <%=link_to "Ver Sedes",'/sedes'%> </li>
+              </ul>
+          </li>
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ciudades <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li> <%=link_to "Agregar Ciudad",'/ciudads/new'%> </li>
+                  <li> <%=link_to "Ver Ciudades",'/ciudads'%> </li>
+              </ul>
+          </li>
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Películas <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li> <%=link_to "Crear Película",'/peliculas/new'%> </li>
+                  <li> <%=link_to "Ver Películas",'/peliculas'%> </li>
+              </ul>
+          </li>
+            <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Funciones <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                    <li> <%=link_to "Crear Función", new_funcion_path%> </li>
+                    <li>Ver Funciones</li>
+              </ul>
+          </li>
           
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menú <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Configurar Cuenta</a></li>
+              <li><a href="#"><%=link_to "Cerrar sesión",edit_socio_password_path%></a></li>
               <li class="divider"></li>
               <li><a href="#"><%=link_to "Cerrar sesión",destroy_socio_session_path, method: "delete"%> </a></li>
-          </ul>
-          </li>
+          
       </ul>
 <%else%>
 
@@ -38,7 +63,7 @@
          <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menú <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Ver Resarvas</a></li>
+            <li><a href="<%=ver_reservas_path%>">Ver Resarvas</a></li>
             <li><a href="#">Configurar Cuenta</a></li>
             <li class="divider"></li>
             <li><a href="#"><%=link_to "Cerrar sesión",destroy_socio_session_path, method: "delete"%> </a></li>
@@ -65,3 +90,4 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+

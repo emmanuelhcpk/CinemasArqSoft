@@ -1,0 +1,27 @@
+
+<%= form_for(@reserva) do |aux| %>
+            
+            <%= aux.hidden_field :funcion_id,:value => @funcion.id %>
+            
+            <%= aux.hidden_field :asistente_id,:value => current_socio.id %>
+            
+          <%= aux.hidden_field :fecha_hora,:value => Time.now %>
+              
+             <%= aux.label :silla_a_reservar %>   
+            <%= aux.select(:silla_reservada_id) do %>
+
+            <%@sillas.each do|a|%>
+
+            <%= content_tag(:option, a.id, value: a.id) %>
+
+           <% end %>
+           <% end %>
+            <div class="field">
+      
+
+      <%= aux.submit "Reservar", class: "btn btn-large btn-primary" %>
+      </div>
+            
+            
+            
+    <%end%>

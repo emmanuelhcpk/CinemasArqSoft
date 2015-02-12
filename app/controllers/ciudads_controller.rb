@@ -11,7 +11,10 @@ before_action :permisos_administrador?, only: [:new, :create,:edit, :update, :de
     
     def mostrar
         @ciudads = Ciudad.all
-
+    end
+    
+    def index
+        @ciudads = Ciudad.all
     end
     
     def create
